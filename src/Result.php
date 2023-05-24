@@ -63,7 +63,7 @@ class Result
 
     /**
      * The number of each birth certificate. By type of person
-     * (4 digits)
+     * (2 digits)
      */
     public function getNumber(): string
     {

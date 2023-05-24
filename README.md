@@ -54,7 +54,7 @@ echo $idCard->getType(); // 1 digit
 echo $idCard->getProvinceOfBirth(); // 2 digit
 echo $idCard->getDistrictOfBirth(); // 2 digit
 echo $idCard->getVolume(); // 5 digit
-echo $idCard->getNumber(); // 4 digit
+echo $idCard->getNumber(); // 2 digit
 echo $idCard->getCheckDigit(); // 1 digit
 ```
 

@@ -42,10 +42,10 @@ it('can generate thai id with district of birth', function () {
     expect($id[3].$id[4])->toBe('10');
 });
 
-it('should throw exception when person type is not 1 or 2', function () {
+it('should throw exception when person type is greater than 8', function () {
     $generator = new Generator();
 
-    $generator->personType('3')->generate();
+    $generator->personType(9)->generate();
 })->throws(InvalidArgumentException::class);
 
 it('should throw exception when province of birth is not 2 digits', function () {

@@ -20,14 +20,16 @@ class Generator
 
     /**
      * Set the person type
+     * 
+     * @param int|string $personType
      */
-    public function personType(string $personType): self
+    public function personType($personType): self
     {
-        if (! in_array($personType, ['1', '2'])) {
-            throw new \InvalidArgumentException('The person type must be 1 or 2.');
+        if ((int) $personType < 1 || (int) $personType > 8) {
+            throw new \InvalidArgumentException('The person type must be between 1 and 8.');
         }
 
-        $this->personType = $personType;
+        $this->personType = (string)$personType;
 
         return $this;
     }
