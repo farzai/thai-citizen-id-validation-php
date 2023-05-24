@@ -21,10 +21,10 @@ Example usage for validating Thai Citizen ID
 use Farzai\ThaiIdValidation\Validator;
 use Farzai\ThaiIdValidation\Exceptions\InvalidThaiCitizenIdException;
 
-$validator = new Validator('1410100100000');
+$validator = new Validator();
 
 try {
-    $validator->validate();
+    $validator->validate('1410100100000');
 } catch (InvalidThaiCitizenIdException $e) {
     // Handle invalid citizen id
 }
