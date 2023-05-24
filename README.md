@@ -15,7 +15,7 @@ You can install the package via composer:
 composer require farzai/thai-citizen-id-validation
 ```
 
-## Usage
+## Usage for validation
 
 ```php
 use Farzai\ThaiIdValidation\Validator;
@@ -29,6 +29,34 @@ try {
     // Handle invalid citizen id
 }
 ```
+
+## Usage for generating
+
+```php
+use Farzai\ThaiIdValidation\Generator;
+
+$generator = new Generator();
+
+// Optional
+$generator
+    ->personType(1) // 1 = บุคคลธรรมดา, 2 = นิติบุคคล
+    ->provinceOfBirth('10') // เลขจังหวัดที่เกิด
+    ->districtOfBirth('10'); // เลขอำเภอที่เกิด
+
+// Generate
+$idCard = $generator->generate();
+
+echo (string)$idCard; // 1410100100000
+
+echo $idCard->getId(); // 1410100100000
+echo $idCard->getType(); // 1 digit
+echo $idCard->getProvinceOfBirth(); // 2 digit
+echo $idCard->getDistrictOfBirth(); // 2 digit
+echo $idCard->getVolume(); // 5 digit
+echo $idCard->getNumber(); // 4 digit
+echo $idCard->getCheckDigit(); // 1 digit
+```
+
 
 ## Testing
 

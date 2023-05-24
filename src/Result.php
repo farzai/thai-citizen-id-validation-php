@@ -27,6 +27,7 @@ class Result
 
     /**
      * The type of person
+     * (1 digit)
      */
     public function getType(): string
     {
@@ -35,6 +36,7 @@ class Result
 
     /**
      * Province of birth
+     * (2 digits)
      */
     public function getProvinceOfBirth(): string
     {
@@ -43,6 +45,7 @@ class Result
 
     /**
      * District of birth
+     * (2 digits)
      */
     public function getDistrictOfBirth(): string
     {
@@ -51,6 +54,7 @@ class Result
 
     /**
      * Indicate the volume of the birth certificate. By type of person
+     * (5 digits)
      */
     public function getVolume(): string
     {
@@ -59,6 +63,7 @@ class Result
 
     /**
      * The number of each birth certificate. By type of person
+     * (4 digits)
      */
     public function getNumber(): string
     {
@@ -67,6 +72,7 @@ class Result
 
     /**
      * The number to verify the correctness of all national id numbers.
+     * (1 digit)
      */
     public function getCheckDigit(): string
     {
