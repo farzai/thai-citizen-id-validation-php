@@ -20,8 +20,8 @@ class Generator
 
     /**
      * Set the person type
-     * 
-     * @param int|string $personType
+     *
+     * @param  int|string  $personType
      */
     public function personType($personType): self
     {
@@ -29,7 +29,7 @@ class Generator
             throw new \InvalidArgumentException('The person type must be between 1 and 8.');
         }
 
-        $this->personType = (string)$personType;
+        $this->personType = (string) $personType;
 
         return $this;
     }
