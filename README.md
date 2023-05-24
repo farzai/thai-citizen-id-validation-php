@@ -16,7 +16,7 @@ composer require farzai/thai-citizen-id-validation
 ```
 
 ## Usage for validation
-
+Example usage for validating Thai Citizen ID
 ```php
 use Farzai\ThaiIdValidation\Validator;
 use Farzai\ThaiIdValidation\Exceptions\InvalidThaiCitizenIdException;
@@ -31,6 +31,7 @@ try {
 ```
 
 ## Usage for generating
+Sometimes you need to generate a random Thai Citizen ID for testing purpose. This library can help you with that.
 
 ```php
 use Farzai\ThaiIdValidation\Generator;
@@ -57,6 +58,15 @@ echo $idCard->getNumber(); // 4 digit
 echo $idCard->getCheckDigit(); // 1 digit
 ```
 
+## Usage with Laravel
+You can use the `IdCard` rule to validate Thai Citizen ID in Laravel.
+```php
+use Farzai\ThaiIdValidation\Laravel\Rules\IdCard;
+
+$request->validate([
+    'id_card' => ['required', new IdCard],
+]);
+```
 
 ## Testing
 
