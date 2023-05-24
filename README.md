@@ -40,7 +40,7 @@ $generator = new Generator();
 
 // Optional
 $generator
-    ->personType(1) // 1 = บุคคลธรรมดา, 2 = นิติบุคคล
+    ->personType(1) // ประเภทบุคคล
     ->provinceOfBirth('10') // เลขจังหวัดที่เกิด
     ->districtOfBirth('10'); // เลขอำเภอที่เกิด
 
