@@ -1,45 +1,56 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "farzai/thai-citizen-id-validation",
+    "description": "Thai citizen id validation",
     "keywords": [
-        ":vendor_name",
-        ":package_slug"
+        "farzai",
+        "thai-citizen-id-validation",
+        "thai-citizen-id",
+        "thai-id",
+        "thai-id-validation",
+        "thai-id-validation-php",
+        "thai-citizen",
+        "validator"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/farzai/thai-citizen-id-validation-php",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
-            "role": "Developer"
+            "name": "parsilver",
+            "email": "parkorn@farzai.com"
         }
     ],
     "require": {
         "php": "^8.1"
     },
     "require-dev": {
-        :require_dev_testing,
-        :require_dev_codestyle,
-        "spatie/ray": "^1.28"
+        "pestphp/pest": "^1.20",
+        "laravel/pint": "^1.2",
+        "spatie/ray": "^1.28",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "symfony/var-dumper": "^6.2"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "Farzai\\ThaiIdValidation\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Farzai\\ThaiIdValidation\\Tests\\": "tests"
         }
     },
     "scripts": {
-        :scripts_testing,
-        :scripts_codestyle
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            :plugins_testing,
+            "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         }
     },
