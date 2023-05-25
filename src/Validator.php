@@ -23,7 +23,7 @@ class Validator
      */
     public function validate(string $id): void
     {
-        $id = trim($id);
+        $id = $this->normalizeTarget($id);
 
         // Check if the id length is exactly 13
         if (strlen($id) !== 13) {
@@ -43,5 +43,16 @@ class Validator
         if ((int) $id[12] !== $checkDigit) {
             throw new InvalidThaiCitizenIdException('The id is invalid.');
         }
+    }
+
+    /**
+     * Normalize the target
+     */
+    protected function normalizeTarget(string $target): string
+    {
+        // Remove all non-digit characters
+        $target = preg_replace('/[^0-9]/', '', $target);
+
+        return $target;
     }
 }
