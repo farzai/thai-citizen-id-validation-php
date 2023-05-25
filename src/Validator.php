@@ -7,6 +7,20 @@ use Farzai\ThaiIdValidation\Exceptions\InvalidThaiCitizenIdException;
 class Validator
 {
     /**
+     * The last solution that was used to validate
+     */
+    public ?string $lastSolution = null;
+
+    /**
+     * The solutions to validate the thai national id
+     *
+     * @var array
+     */
+    private $solutions = [
+        Algorithms\SimpleWithMod11::class,
+    ];
+
+    /**
      * Validate the thai national id
      *
      * @throws InvalidThaiCitizenIdException
@@ -30,29 +44,46 @@ class Validator
             throw new InvalidThaiCitizenIdException('The id must be 13 digits.');
         }
 
-        // Calculate the sum of each digit multiplied by the weight
-        $sum = 0;
-        for ($i = 0; $i < 12; $i++) {
-            $sum += (int) $id[$i] * (13 - $i);
+        foreach ($this->solutions as $solution) {
+            $error = $this->validateUsing(new $solution, $id);
+
+            if ($error === null) {
+                $this->foundSolution($solution);
+
+                return;
+            }
         }
 
-        // Calculate the check digit
-        $checkDigit = (11 - ($sum % 11)) % 10;
-
-        // Compare the last digit with the check digit
-        if ((int) $id[12] !== $checkDigit) {
-            throw new InvalidThaiCitizenIdException('The id is invalid.');
-        }
+        throw $error ?? new InvalidThaiCitizenIdException('The id is invalid.');
     }
 
     /**
      * Normalize the target
      */
-    protected function normalizeTarget(string $target): string
+    private function normalizeTarget(string $target): string
     {
         // Remove all non-digit characters
         $target = preg_replace('/[^0-9]/', '', $target);
 
         return $target;
+    }
+
+    /**
+     * Validate the thai national id using the given solution
+     */
+    private function validateUsing(Contracts\Validator $solution, string $id): ?InvalidThaiCitizenIdException
+    {
+        try {
+            $solution->validate($id);
+        } catch (InvalidThaiCitizenIdException $e) {
+            return $e;
+        }
+
+        return null;
+    }
+
+    private function foundSolution(string $solution): void
+    {
+        $this->lastSolution = $solution;
     }
 }
