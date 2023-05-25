@@ -11,6 +11,14 @@ it('can validate thai id', function () {
     $validator->validate('1410127443236');
 });
 
+it('can validate thai id with special character', function () {
+    $this->expectNotToPerformAssertions();
+
+    $validator = new Validator();
+
+    $validator->validate('1-4101-27443-23-6');
+});
+
 it('can validate via call __invoke()', function () {
     $this->expectNotToPerformAssertions();
 
