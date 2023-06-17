@@ -1,21 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Farzai\ThaiIdValidation\Laravel\Rules;
 
 use Closure;
 use Farzai\ThaiIdValidation\Exceptions\InvalidThaiCitizenIdException;
 use Farzai\ThaiIdValidation\Validator;
-use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Application;
 
-if (version_compare(Application::VERSION, '8.0.0', '>=')) {
+if (version_compare(Application::VERSION, '10.0.0', '<')) {
     /**
-     * @see https://laravel.com/docs/8.x/validation#using-rule-objects
-     *
      * @phpstan-ignore-next-line
      */
-    class IdCard implements Rule
+    class IdCard implements \Illuminate\Contracts\Validation\Rule
     {
         private string $message;
 
@@ -45,10 +43,7 @@ if (version_compare(Application::VERSION, '8.0.0', '>=')) {
         }
     }
 } else {
-    /**
-     * @see https://laravel.com/docs/10.x/validation#using-rule-objects
-     */
-    class IdCard implements ValidationRule
+    class IdCard implements \Illuminate\Contracts\Validation\ValidationRule
     {
         /**
          * Run the validation rule.
@@ -61,21 +56,6 @@ if (version_compare(Application::VERSION, '8.0.0', '>=')) {
             } catch (InvalidThaiCitizenIdException $e) {
                 $fail($e->getMessage());
             }
-        }
-
-        /**
-         * Determine if the validation rule passes.
-         */
-        public function passes($attribute, $value): bool
-        {
-            try {
-                $validator = new Validator();
-                $validator->validate($value);
-            } catch (InvalidThaiCitizenIdException $e) {
-                return false;
-            }
-
-            return true;
         }
     }
 }
