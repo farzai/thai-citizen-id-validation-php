@@ -2,6 +2,14 @@
 
 All notable changes to `thai-citizen-id-validation-php` will be documented in this file.
 
+## 1.2.1 - 2023-06-17
+
+### What's Changed
+
+- Remove dp by @parsilver in https://github.com/farzai/thai-citizen-id-validation-php/pull/8
+
+**Full Changelog**: https://github.com/farzai/thai-citizen-id-validation-php/compare/1.2.0...1.2.1
+
 ## 1.2.0 - 2023-06-17
 
 ### What's Changed
