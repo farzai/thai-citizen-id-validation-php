@@ -21,13 +21,13 @@
     ],
     "require": {
         "php": "^8.0",
-        "ext-json": "*",
-        "illuminate/contracts": "^8.0|^9.0|^10.0"
+        "ext-json": "*"
     },
     "require-dev": {
         "pestphp/pest": "^1.0",
         "laravel/pint": "^1.2",
         "spatie/ray": "^1.28",
+        "illuminate/contracts": "^8.0|^9.0|^10.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
