@@ -14,11 +14,6 @@ class SimpleWithMod11 implements Validator
      */
     public function validate(string $id): void
     {
-        // Check if the id length is exactly 13
-        if (strlen($id) !== 13) {
-            throw new InvalidThaiCitizenIdException('The id must be 13 digits.');
-        }
-
         // Calculate the sum of each digit multiplied by the weight
         $sum = 0;
         for ($i = 0; $i < 12; $i++) {

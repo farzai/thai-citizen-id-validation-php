@@ -21,28 +21,21 @@ it('should throw exception when given an invalid id card number', function () {
     $validator->validate();
 })->throws('The id must be 13 digits.');
 
-it('should match implementation when using Laravel 8', function () {
-    if (version_compare(app()->version(), '8.0.0', '<')) {
-        $this->markTestSkipped('This test only run on Laravel 8 or above.');
-    }
-
+it('should match implementation when using Laravel', function () {
     $validator = Validator::make(
         ['id_card' => '1410127443236'],
-        ['id_card' => new IdCard]
+        ['id_card' => $rule = new IdCard]
     );
 
-    expect($validator->passes())->toBeTrue();
-});
-
-it('should match implementation when using Laravel 10', function () {
-    if (version_compare(app()->version(), '8.0.0', '>=')) {
-        $this->markTestSkipped('This test only run on Laravel 10 or below.');
+    if (version_compare(app()->version(), '10.0.0', '<')) {
+        expect($rule)->toBeInstanceOf(Illuminate\Contracts\Validation\Rule::class);
+        expect($rule->message())->toBeString();
+    } else {
+        expect($rule)->toBeInstanceOf(Illuminate\Contracts\Validation\ValidationRule::class);
+        $rule->validate('id_card', '1410127443236', function ($message) {
+            expect($message)->toBeString();
+        });
     }
-
-    $validator = Validator::make(
-        ['id_card' => '1410127443236'],
-        ['id_card' => new IdCard]
-    );
 
     expect($validator->passes())->toBeTrue();
 });
