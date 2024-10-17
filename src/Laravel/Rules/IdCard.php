@@ -23,7 +23,7 @@ if (version_compare(Application::VERSION, '10.0.0', '<')) {
         public function passes($attribute, $value): bool
         {
             try {
-                $validator = new Validator();
+                $validator = new Validator;
                 $validator->validate($value);
             } catch (InvalidThaiCitizenIdException $e) {
                 $this->message = $e->getMessage();
@@ -51,7 +51,7 @@ if (version_compare(Application::VERSION, '10.0.0', '<')) {
         public function validate(string $attribute, mixed $value, Closure $fail): void
         {
             try {
-                $validator = new Validator();
+                $validator = new Validator;
                 $validator->validate($value);
             } catch (InvalidThaiCitizenIdException $e) {
                 $fail($e->getMessage());

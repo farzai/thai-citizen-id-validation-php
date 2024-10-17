@@ -3,7 +3,7 @@
 use Farzai\ThaiIdValidation\Generator;
 
 it('can generate thai id', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $id = $generator->generate();
 
@@ -11,7 +11,7 @@ it('can generate thai id', function () {
 });
 
 it('can generate with __invoke()', function () {
-    $generate = new Generator();
+    $generate = new Generator;
 
     $id = $generate();
 
@@ -19,7 +19,7 @@ it('can generate with __invoke()', function () {
 });
 
 it('can generate thai id with person type', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $id = (string) $generator->personType('2')->generate();
 
@@ -27,7 +27,7 @@ it('can generate thai id with person type', function () {
 });
 
 it('can generate thai id with province of birth', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $id = (string) $generator->provinceOfBirth('10')->generate();
 
@@ -35,7 +35,7 @@ it('can generate thai id with province of birth', function () {
 });
 
 it('can generate thai id with district of birth', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $id = (string) $generator->districtOfBirth('10')->generate();
 
@@ -43,19 +43,19 @@ it('can generate thai id with district of birth', function () {
 });
 
 it('should throw exception when person type is greater than 8', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $generator->personType(9)->generate();
 })->throws(InvalidArgumentException::class);
 
 it('should throw exception when province of birth is not 2 digits', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $generator->provinceOfBirth('100')->generate();
 })->throws(InvalidArgumentException::class);
 
 it('should throw exception when district of birth is not 2 digits', function () {
-    $generator = new Generator();
+    $generator = new Generator;
 
     $generator->districtOfBirth('100')->generate();
 })->throws(InvalidArgumentException::class);
